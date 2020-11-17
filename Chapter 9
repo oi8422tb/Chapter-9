@@ -1,0 +1,60 @@
+from breezypythongui import EasyFrame
+from tkinter import PhotoImage
+
+
+class cardGame(EasyFrame):
+
+    def init(self):
+        """Creates the card(s), and sets up the Images and labels
+        for the two CARD to be displayed, the state label,
+        and the two command buttons."""
+        EasyFrame.init(self, title = "Cards")
+        self.setSize(220, 200)
+        self. = Card()
+        self.cardB = Card()
+        self.cardSide1 = self.addLabel("", row = 0,
+                                       column = 0,
+                                       sticky = "NS")
+        self.cardSide2 = self.addLabel("", row = 0,
+                                       column = 1,
+                                       sticky = "NS",
+                                       columnspan = 2)
+        self.stateLabel = self.addLabel("", row = 1, column = 0,
+                                        sticky = "NS",
+                                        columnspan = 2)
+        self.addButton(row = 2, column = 0,
+                       text = "Roll",
+                       command = self.nextDraw)
+        self.addButton(row = 2, column = 1,
+                       text = "New game",
+                       command = self.newGame)
+        self.refreshImages()
+
+    def nextCard(self):
+        """Shows next card."""
+        self.cardF.draw()
+        self.cardB.draw()
+        total = self.cardF.getValue() + self.cardB.getValue()
+        self.stateLabel["text"] = "Total = " + str(total)
+        self.refreshImages()
+def newGame(self):
+        """Gets new cards from deck"""
+        self.card1 = Card()
+        self.card2 = Card()
+        self.stateLabel["text"] = ""
+        self.refreshImages()
+
+    def refreshImages(self):
+        """Updates the images in the window."""
+        fileName1 = "CARD/" + str(self.cardF) + ".gif"
+        fileName2 = "CARD/" + str(self.cardB) + ".gif"
+        self.image1 = PhotoImage(file = fileName1)
+        self.cardSide1["image"] = self.image1
+        self.image2 = PhotoImage(file = fileName2)
+        self.cardSide2["image"] = self.image2
+
+def main():
+    cardGame().mainloop()
+
+if name == "main":
+    main()
